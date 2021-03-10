@@ -151,38 +151,40 @@ public class LAB3_Zerebkovs {
                 }
                 arr[j] = key;
             }
-            h = h/3;
+            h = (h-1)/3;
         }
     }
 
 
     public static void QuickSort(int[] arr,int L, int R) {
-        int li = L;
-        int ri = R;
-        int pi = (L+R)/2;
-        int p = arr[pi];
-        while(li <=ri){
+            if(L>=R){
+                return;
+            }else{
+                int li = L;
+                int ri = R;
+                int pi = (L + R) / 2;
+                int p = arr[pi];
+                    while(true) {
+                        while (arr[li] < p) {
+                            li++;
+                        }
 
-            while(arr[li] <p){
-                li++;
-            }
+                        while (arr[ri] > p) {
+                            ri--;
+                        }
+                        if (li < ri) {
+                            swap(arr, li, ri);
+                            li++;
+                            ri--;
+                        } else {
+                            break;
+                        }
 
-            while(arr[ri]>p){
-                ri--;
-            }
-            if(li<=ri){
-                swap(arr,li,ri);
-                li++;
-                ri--;
-            }
-        }
+                    }
+                QuickSort(arr,L,ri);
+                QuickSort(arr,ri+1,R);
 
-        if(L<ri){
-            QuickSort(arr,L,ri);
-        }
-        if(li<R){
-            QuickSort(arr,li,R);
-        }
+            }
 
     }
 
